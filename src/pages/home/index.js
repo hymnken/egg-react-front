@@ -3,7 +3,6 @@ import Header from './components/header';
 import Search from './components/search';
 import Hot from './components/hot';
 import { useHttpHook } from '@/hooks';
-
 import './index.less';
 
 export default function(props){
@@ -22,11 +21,11 @@ export default function(props){
 
   return (
     <div className='home'>
-      {/**header登录 */}
+      {/**这是header登录 */}
       <Header />
-      {/**搜索 */}
+      {/**这是搜索 */}
       <Search citys={citys} citysLoading={citysLoading} />
-      {/**热门民宿 */}
+      {/**这是热门民宿 */}
       <Hot houses={houses}/>
     </div>
   )
