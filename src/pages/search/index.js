@@ -4,9 +4,7 @@ import { useHttpHook, useObserverHook, useImgHook } from '@/hooks';
 import { useLocation } from 'umi';
 import { ShowLoading } from '@/components';
 import { CommonEnum } from '@/enums';
-
 import './index.less';
-
 export default function (props) {
   const { query } = useLocation();
   const [houseName, setHouseName] = useState('');
@@ -14,7 +12,6 @@ export default function (props) {
   const [houseLists, setHouseLists] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
   const [houseSubmitName, setHouseSubmitName] = useState('');
-  
   const [houses, loading] = useHttpHook({
     url: '/house/search',
     body: {
