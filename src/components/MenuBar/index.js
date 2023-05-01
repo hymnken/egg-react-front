@@ -7,7 +7,7 @@ import { history } from 'umi';
 import './index.less';
 
 export default class MenuBar extends Component {
-
+  // 底部导航
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +36,6 @@ export default class MenuBar extends Component {
 
   render() {
     const { show, pathname } = this.props;
-
     return (
       <div className='menu-bar'>
         <TabBar hidden={!show}>
