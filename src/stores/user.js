@@ -55,8 +55,10 @@ export default {
       });
       if(result){
         // console.log(urlGet('from'))
-        cookie.set('user', result);
-        history.push(urlGet('from'));
+        localStorage.setItem('token', result.token)
+        localStorage.setItem('username', result.username);
+        // cookie.set('user', result);
+        urlGet('from') && history.push(urlGet('from'));
         Toast.success('登录成功');
       }
     },
@@ -66,7 +68,9 @@ export default {
         body: payload
       });
       if(result){
-        cookie.set('user', result);
+        // cookie.set('user', result);
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('username', result.username);
         Toast.success('注册成功');
       }
     }
