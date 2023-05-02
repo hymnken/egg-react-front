@@ -4,7 +4,7 @@ import Search from './components/search';
 import Hot from './components/hot';
 import { useHttpHook } from '@/hooks';
 import './index.less';
-
+import { ErrorBoundary} from '@/components'
 export default function (props) {
   const [state, setState] = useState();
 
@@ -18,13 +18,15 @@ export default function (props) {
   useEffect(() => {}, []);
 
   return (
-    <div className="home">
-      {/**这是header登录 */}
-      <Header />
-      {/**这是搜索 */}
-      <Search citys={citys} citysLoading={citysLoading} />
-      {/**这是热门民宿 */}
-      <Hot houses={houses} />
-    </div>
+    <ErrorBoundary>
+      <div className="home">
+        {/**这是header登录 */}
+        <Header />
+        {/**这是搜索 */}
+        <Search citys={citys} citysLoading={citysLoading} />
+        {/**这是热门民宿 */}
+        <Hot houses={houses} />
+      </div>
+    </ErrorBoundary>
   );
 }
