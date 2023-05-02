@@ -7,7 +7,7 @@ import './index.less';
 
 export default function (props) {
   const {
-    user: { username, avatar, tel, sign, getUserAsync, logoutAsync },
+    user: { username, avatar, phone, sign, getUserAsync, logoutAsync },
   } = useStoreHook();
   const [state, setState] = useState()
 
@@ -29,31 +29,29 @@ export default function (props) {
   }, [])
 
   return (
-    <div className='user-page'>
+    <div className="user-page">
       {/**用户信息 */}
-      <div className='info'>
-        <div className='set' onClick={handleClick}>设置</div>
-        <div className='user'>
-          <img alt='user' src={avatar || require('../../assets/yay.jpg')} />
-          <div className='tel'>{tel}</div>
-          <div className='sign'>{sign}</div>
+      <div className="info">
+        <div className="set" onClick={handleClick}>
+          设置
+        </div>
+        <div className="user">
+          <img alt="user" src={avatar || require('../../assets/yay.jpg')} />
+          <div className="phone">{phone}</div>
+          <div className="sign">{sign}</div>
         </div>
       </div>
       {/**列表 */}
-      <div className='lists'>
+      <div className="lists">
         <List>
-          <List.Item arrow='horizontal'>
-            用户协议
-          </List.Item>
-          <List.Item arrow='horizontal'>
-            常见问题
-          </List.Item>
-          <List.Item arrow='horizontal'>
-            联系客服
-          </List.Item>
+          <List.Item arrow="horizontal">用户协议</List.Item>
+          <List.Item arrow="horizontal">常见问题</List.Item>
+          <List.Item arrow="horizontal">联系客服</List.Item>
         </List>
       </div>
-      <Button style={{marginTop:'100px'}} onClick={handleLogout}>退出登录</Button>
+      <Button style={{ marginTop: '100px' }} onClick={handleLogout}>
+        退出登录
+      </Button>
     </div>
-  )
+  );
 }
