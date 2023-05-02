@@ -9,70 +9,79 @@ export default {
     username: undefined,
     avatar: undefined,
     tel: undefined,
-    sign: undefined
+    sign: undefined,
   },
   reducers: {
-    getUser(state, payload){
+    getUser(state, payload) {
       return {
         ...state,
-        ...payload
-      }
+        ...payload,
+      };
     },
-    editUser(state, payload){
+    editUser(state, payload) {
       return {
         ...state,
-        ...payload
-      }
-    }
+        ...payload,
+      };
+    },
   },
   effects: {
-    async getUserAsync(dispatch, rootState, payload){
+    async getUserAsync(dispatch, rootState, payload) {
       const user = await Http({
         url: '/user/detail',
-        body: payload
+        body: payload,
       });
-      if(user){
+      if (user) {
         dispatch({
           type: 'getUser',
-          payload: user
+          payload: user,
         });
       }
     },
-    async editUserAsync(dispatch, rootState, payload){
+    async editUserAsync(dispatch, rootState, payload) {
       const result = await Http({
         url: '/user/edit',
-        body: payload
+        body: payload,
       });
       if (result) {
         Toast.success('编辑成功');
         history.push('/user');
       }
     },
-    async loginAsync(dispatch, rootState, payload){
+    async loginAsync(dispatch, rootState, payload) {
       const result = await Http({
         url: '/user/login',
-        body: payload
+        body: payload,
       });
-      if(result){
+      if (result) {
         // console.log(urlGet('from'))
-        localStorage.setItem('token', result.token)
+        localStorage.setItem('token', result.token);
         localStorage.setItem('username', result.username);
         // cookie.set('user', result);
         urlGet('from') && history.push(urlGet('from'));
         Toast.success('登录成功');
       }
     },
-    async registerAsync(dispatch, rootState, payload){
+    async registerAsync(dispatch, rootState, payload) {
       const result = await Http({
         url: '/user/register',
-        body: payload
+        body: payload,
       });
-      if(result){
+      if (result) {
         // cookie.set('user', result);
         localStorage.setItem('token', result.token);
         localStorage.setItem('username', result.username);
         Toast.success('注册成功');
       }
-    }
-  }
+    },
+    async logoutAsync(dispatch,rootState,payload) {
+      await Http({
+        url: '/user/logout',
+        body:payload
+      })
+      Toast.success('退出登录成功')
+      localStorage.clear();
+      location.href = '/login?from=' + location.pathname
+    },
+  },
 };
